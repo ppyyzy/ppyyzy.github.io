@@ -75,7 +75,7 @@ fetch('https://txt.ppyy19.shop/yumi1.php')
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><span class="link" id="use"></span>' +
                     '<br>也可訪問<span style="color:red;">ppyyzy.com</span><br>' +
-                    '<a class="btn" href="https://www.ebay.com/usr/ppyyzy">ebay</a>或聯絡郵箱<span style="color:red;">ppyyzy@gmail.com</span>取得新地址' +
+                    '<a class="btn" href="https://www.ebay.com/usr/ppyyzy">ebay</a>或聯絡郵箱<span style="color:red;">ppyyzy@outlook.com</span>取得新地址' +
                     '<br><div class="ps">若出現網址打不開，或出現<span class="ssl">https</span>（<span style="color:red">證書不一致</span>）時' +
                     '<br>已確定是您當地的DNS伺服器被入侵劫持。<br>您可以將DNS伺服器更換為<br><span style="color:gold">Google DNS（慣用：8.8.8.8）（備用：8.8.4.4）</span>' +
                     '<br>或其它安全的DNS（可使用搜尋引擎查詢DNS設定方法）<br>行動設備可直接使用數據網路流量避免此問題。</div>');
