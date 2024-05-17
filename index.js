@@ -60,9 +60,9 @@ fetch('https://txt.ppyy19.shop/yumi1.php')
                 foot.innerHTML = '';
                 showlink.innerHTML = '';
                 main.insertAdjacentHTML('afterBegin',
-                    '<p>您可能會無法正常進入ppyyzy.com</p>' +
-                    '<p>请保存ppyyzy.com到书签。</p>' +
-                    '<p>防止走丢，也可以保存当前页面到书签。</p>' +
+                    '<p>发布页地址1：ppyyzy.com</p>' +
+                    '<p>发布页地址2：ppyyzy.github.io</p>' +
+                    '<p>防止走丢，请保存上面的发布页到书签。</p>' +
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><SPAN class="link" id="use"></SPAN>' +
                     '<br>再次提醒<SPAN style="color:red;">请保存此页面为书签</SPAN><br>' +
