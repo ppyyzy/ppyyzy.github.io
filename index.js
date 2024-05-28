@@ -60,11 +60,12 @@ fetch('https://txt.ppyy19.shop/yumi1.php')
                 foot.innerHTML = '';
                 showlink.innerHTML = '';
                 main.insertAdjacentHTML('afterBegin',
-                    '<p>发布页地址1：ppyyzy.com</p>' +
-                    '<p>发布页地址2：ppyyzy.github.io</p>' +
+                    '<p>发布页地址1：<a href="https://ppyyzy.com"><span class="host">ppyyzy.com</span></a></p> ' +
+                    '<p>发布页地址2：<a href="https://ppyyzy.github.io"><span class="host">ppyyzy.github.io</span></a></p>' +
                     '<p>防止走丢，请保存上面的发布页到书签。</p>' +
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><SPAN class="link" id="use"></SPAN>' +
+                    '<p>备用地址</p><a href="https://www.ezhih.com"><span class="btn ping">Ping...</span><span class="host">www.ezhih.com</span></a><br>'+
                     '<br>再次提醒<SPAN style="color:red;">请保存此页面为书签</SPAN><br>' +
                     '<br>请牢记发布页<SPAN style="color:red;">ppyyzy.github.io和ppyyzy.com</SPAN><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/ppyyzy">ebay</a>或聯絡郵箱<SPAN style="color:red;">ppyyzy@outlook.com</SPAN>取得新地址' +
