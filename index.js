@@ -1,3 +1,34 @@
+// 假设这是您想要执行的异步操作（例如发送 fetch 请求）  
+function fetchData() {  
+    // 显示“请稍后”的消息  
+    showLoadingMessage();  
+  
+    // 模拟异步操作（例如 fetch 请求）  
+    setTimeout(function() {  
+        // 假设这是从服务器获取的数据  
+        var data = '<div>数据已成功加载！</div>';  
+  
+        // 隐藏或移除“请稍后”的消息  
+        hideLoadingMessage();  
+  
+        // 将数据插入到 result-container 中  
+        document.getElementById('result-container').innerHTML = data;  
+    }, 2000); // 假设异步操作需要2秒  
+}  
+  
+// 显示“请稍后”的消息  
+function showLoadingMessage() {  
+    document.getElementById('loading-message').style.display = 'block';  
+}  
+  
+// 隐藏或移除“请稍后”的消息  
+function hideLoadingMessage() {  
+    document.getElementById('loading-message').style.display = 'none';  
+}  
+  
+// 页面加载完成后执行 fetchData 函数  
+window.onload = fetchData;
+
 async function fetchDomainList() {    
     try {    
         const response = await fetch('https://txt.ppyy19.shop/yumi1.php');    
