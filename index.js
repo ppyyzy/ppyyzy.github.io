@@ -6,7 +6,7 @@ function fetchData() {
     // 模拟异步操作（例如 fetch 请求）  
     setTimeout(function() {  
         // 假设这是从服务器获取的数据  
-        var data = '<div>数据已成功加载！</div>';  
+        var data = '<div>数据正在加载，请稍后！</div>';  
   
         // 隐藏或移除“请稍后”的消息  
         hideLoadingMessage();  
@@ -29,30 +29,69 @@ function hideLoadingMessage() {
 // 页面加载完成后执行 fetchData 函数  
 window.onload = fetchData;
 
-async function fetchDomainList() {    
-    try {    
-        const response = await fetch('https://txt.ppyy19.shop/yumi1.php');    
-        if (!response.ok) {    
-            throw new Error(`HTTP error! status: ${response.status}`);    
-        }    
-        // 直接返回响应的文本内容（假设它是字符串）  
-        return response.text(); // 获取响应的文本内容  
-    } catch (error) {    
-        console.error('Failed to fetch domain list:', error);    
-        return ''; // 或者您可以返回一个空字符串或抛出错误  
-    }    
+async function fetchDomainList() {  
+    try {  
+        const response = await fetch('https://txt.ppyy19.shop/yuu.php');  
+        if (!response.ok) {  
+            throw new Error(`HTTP error! status: ${response.status}`);  
+        }  
+        return response.json(); // 解析 JSON 响应  
+    } catch (error) {  
+        console.error('Failed to fetch domain list:', error);  
+        return []; // 或者你可以抛出一个错误  
+    }  
 }  
+let availableDomain; // 声明一个外部变量来存储可用域名  
+   console.log(availableDomain); 
+   
+async function checkDomains() {    
+    try {    
+        const domainList = await fetchDomainList(); // 假设这个函数返回Promise并解析为域名列表  
   
-// 调用函数并处理返回的 Promise  
-fetchDomainList().then(domainString => {  
-    // 在这里，domainString 就是从 fetchDomainList 返回的字符串  
-    console.log(domainString); // 输出字符串到控制台  
-    // 你可以将 domainString 赋值给一个变量，然后在其他地方使用它  
-    const domainListAsString = domainString;  
-    // ... 在这里使用 domainListAsString 做其他事情 ...  
+        for (const domain of domainList) {    
+            try {    
+                // 尝试发送HEAD请求到域名    
+                const response = await fetch(`https://${domain}`, { method: 'HEAD' });    
+                // 检查是否收到了响应，并且状态码在200-399之间（或根据需求调整）  
+                if (response.ok) {    
+                    //console.log(`${domain} is available`);     
+                    availableDomain = domain; // 设置外部变量  
+                    return; // 找到后直接返回，停止检查其他域名  
+                } else {    
+                    // 域名不可用，继续检查下一个  
+                    //console.log(`${domain} is not available`);     
+                }    
+            } catch (error) {    
+                // 如果fetch失败（比如DNS解析失败），则域名不可用  
+                console.error(`${domain}:不可用`); 
+                try {  
+            // 注意使用反引号来定义模板字符串，并使用 ${domain} 进行插值  
+            const fallbackResponse = await fetch(`https://txt.ppyy19.shop/sd.php?url=${domain}`);  
+            // 处理fallbackResponse...  
+            console.log('Fallback request sent:', fallbackResponse.ok ? 'Success' : 'Failed');  
+        } catch (fallbackError) {  
+            // 处理fallback请求的错误  
+            console.error('Fallback request failed:', fallbackError);  
+        } 
+        
+        
+            }      
+        }  
+  
+        // 如果没有找到可用的域名  
+        availableDomain = null; // 可以设置为null或undefined，或者抛出错误  
+    } catch (error) {    
+        console.error('Error during domain check:', error);    
+        availableDomain = null; // 如果有错误，也设置变量为null  
+    }    
+}    
+  
+// 开始检查域名  
+checkDomains().then(() => {  
+    if (availableDomain) {  
+        //console.log(`Available domain found: ${availableDomain}`);  
 
-
-            var url = 'https://' + domainListAsString;   
+            var url = 'https://' + availableDomain+'?dom=' + availableDomain;   
             var uselink = [url, url]; 
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
@@ -111,7 +150,7 @@ fetchDomainList().then(domainString => {
                     '<p>防止走丢，请保存上面的发布页到书签。</p>' +
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><SPAN class="link" id="use"></SPAN>' +
-                    '<p>如果上面地址打不开，请点击下面的地址</p><a href="https://www.ezhih.com"><span class="btn ping">Ping...</span><span class="host">www.ezhih.com</span></a><br>'+
+                    '<p>备用地址</p><a href="https://www.ezhih.com"><span class="btn ping">Ping...</span><span class="host">www.ezhih.com</span></a><br>'+
                     '<br>再次提醒<SPAN style="color:red;">请保存此页面为书签</SPAN><br>' +
                     '<br>请牢记发布页<SPAN style="color:red;">ppyyzy.github.io和ppyyzy.com</SPAN><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/ppyyzy">ebay</a>或聯絡郵箱<SPAN style="color:red;">ppyyzy@outlook.com</SPAN>取得新地址' +
@@ -146,8 +185,9 @@ const gonggaoHtml = `<H1>ppyyzy-最新地址</H1>
                 <P>最新網路上有很多冒牌的ppyyzy網站， 一旦點擊進去就會發現不是我們，而且會跳轉到收費，或者不能正常使用的站點。 ppyyzy是完全免費的並且不需要登入會員也不會讓您試看然後沒有後續的網站。正確的地址有ppyyzy.com這個地址,后续会增加更多备用地址。除此之外全部都是冒牌的惡意網站，請您詳細辨認。</P>`;  
     gonggaoContent.innerHTML = gonggaoHtml;  
     
-
-}).catch(error => {  
-    // 如果 fetchDomainList 抛出了错误，这里会捕获到它  
-    console.error('An error occurred:', error);  
-});
+        // 在这里可以使用availableDomain变量  
+    } else {  
+       console.log('No domains are available.');  
+    }  
+});  
+ 
