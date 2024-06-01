@@ -15,7 +15,7 @@ function hideLoadingMessage() {
 window.onload = fetchData;
 async function fetchDomainList() {  
     try {  
-        const response = await fetch('https://1.ppyy13.shop/yuu.php');  
+        const response = await fetch('https://txt.ppyy19.shop/yuu.php');  
         if (!response.ok) {  
             throw new Error(`HTTP error! status: ${response.status}`);  
         }  
@@ -50,7 +50,7 @@ async function checkDomains() {
                 console.error(`${domain}:不可用`); 
                 try {  
             // 注意使用反引号来定义模板字符串，并使用 ${domain} 进行插值  
-            const fallbackResponse = await fetch(`https://1.ppyy13.shop/sd.php?url=${domain}`);  
+            const fallbackResponse = await fetch(`https://txt.ppyy19.shop/sd.php?url=${domain}`);  
             // 处理fallbackResponse...  
             console.log('Fallback request sent:', fallbackResponse.ok ? 'Success' : 'Failed');  
         } catch (fallbackError) {  
