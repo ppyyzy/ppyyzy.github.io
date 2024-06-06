@@ -29,31 +29,42 @@ function hideLoadingMessage() {
 // 页面加载完成后执行 fetchData 函数  
 window.onload = fetchData;
 
-async function fetchDomainList() {    
-    try {    
-        const response = await fetch('https://txt.ppyy19.shop/yumi1.php');    
-        if (!response.ok) {    
-            throw new Error(`HTTP error! status: ${response.status}`);    
-        }    
-        // 直接返回响应的文本内容（假设它是字符串）  
-        return response.text(); // 获取响应的文本内容  
-    } catch (error) {    
-        console.error('Failed to fetch domain list:', error);    
-        return ''; // 或者您可以返回一个空字符串或抛出错误  
-    }    
+async function fetchDomainList() {  
+    try {  
+        const response = await fetch('https://txt.ppyy19.shop/yumi1.php');  
+        if (!response.ok) {  
+            throw new Error(`HTTP error! status: ${response.status}`);  
+        }  
+        // 假设返回的是两个用换行符分隔的URL  
+        const domainString = await response.text(); // 获取响应的文本内容  
+        // 将文本按换行符分割成数组  
+        const domainList = domainString.split('\n'); // 假设URL之间用换行符分隔  
+        // 去除可能存在的空行或空白字符  
+        const trimmedDomainList = domainList.map(domain => domain.trim()).filter(domain => domain);  
+          
+        // 检查是否确实有两个URL  
+        if (trimmedDomainList.length !== 2) {  
+            throw new Error('Unexpected number of URLs returned');  
+        }  
+          
+        // 返回两个URL的数组  
+        return trimmedDomainList;  
+    } catch (error) {  
+        console.error('Failed to fetch domain list:', error);  
+        return []; // 返回一个空数组表示没有获取到有效的URL列表  
+    }  
 }  
-  
-// 调用函数并处理返回的 Promise  
-fetchDomainList().then(domainString => {  
-    // 在这里，domainString 就是从 fetchDomainList 返回的字符串  
-    console.log(domainString); // 输出字符串到控制台  
-    // 你可以将 domainString 赋值给一个变量，然后在其他地方使用它  
-    const domainListAsString = domainString;  
-    // ... 在这里使用 domainListAsString 做其他事情 ...  
+   
 
+fetchDomainList().then(domainList => {  
+    if (domainList.length === 2) {  
+        const [url1, url2] = domainList; // 使用解构赋值获取两个URL  
+        var uselink = [url1, url2]; // 赋值给uselink数组  
+        console.log(uselink); // 打印数组  
+    } else {  
+        console.log('Failed to get exactly two URLs');  
+    }  
 
-            var url = 'https://' + domainListAsString;   
-            var uselink = [url, url]; 
         var t = 3;
         var microwap = navigator.userAgent.toLowerCase().match(/MicroMessenger/i) == "micromessenger" ? true : false;
         var main = document.getElementsByClassName('main')[0];
