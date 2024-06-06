@@ -60,9 +60,9 @@ fetchDomainList().then(domainList => {
     if (domainList.length === 2) {  
         const [url1, url2] = domainList; // 使用解构赋值获取两个URL  
         var uselink = [url1, url2]; // 赋值给uselink数组  
-        console.log(uselink); // 打印数组  
+        //console.log(uselink); // 打印数组  
     } else {  
-        console.log('Failed to get exactly two URLs');  
+        //console.log('Failed to get exactly two URLs');  
     }  
 
         var t = 3;
