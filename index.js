@@ -122,7 +122,7 @@ fetchDomainList().then(domainList => {
                     '<p>防止走丢，请保存上面的发布页到书签。</p>' +
                     '<p style="color:red">可通過本頁面或下面方式取得新地址</p>');
                 showlink.insertAdjacentHTML('afterBegin', '<p>新的地址</p><SPAN class="link" id="use"></SPAN>' +
-                    '<p>如果上面地址打不开，请点击下面的地址</p><a href="https://www.ezhih.com"><span class="btn ping">Ping...</span><span class="host">www.ezhih.com</span></a><br>'+
+                    '<p>如果上面地址打不开，请点击下面的地址</p><a href="https://520xav.com"><span class="btn ping">Ping...</span><span class="host">520xav.com</span></a><br>'+
                     '<br>再次提醒<SPAN style="color:red;">请保存此页面为书签</SPAN><br>' +
                     '<br>请牢记发布页<SPAN style="color:red;">ppyyzy.github.io和ppyyzy.com</SPAN><br>' +
                     '<a class="btn" href="https://www.ebay.com/usr/ppyyzy">ebay</a>或聯絡郵箱<SPAN style="color:red;">ppyyzy@outlook.com</SPAN>取得新地址' +
