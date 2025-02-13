@@ -31,7 +31,7 @@ window.onload = fetchData;
 
 async function fetchDomainList() {  
     try {  
-        const response = await fetch('https://stxt.ppyy19.shop/yumi1.php');  
+        const response = await fetch('https://stxt.pp10.site/yumi1.php');  
         if (!response.ok) {  
             throw new Error(`HTTP error! status: ${response.status}`);  
         }  
